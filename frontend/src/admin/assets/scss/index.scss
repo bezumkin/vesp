@@ -1,0 +1,12 @@
+@import 'variables';
+
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-vue/src/index';
+
+.page-enter-active, .page-leave-active, .layout-enter-active, .layout-leave-active {
+  transition: opacity 0.1s
+}
+
+.page-enter, .page-leave-active, .layout-enter, .layout-leave-active {
+  opacity: 0
+}

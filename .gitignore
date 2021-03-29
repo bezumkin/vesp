@@ -1,0 +1,11 @@
+/.idea
+/.env
+/.env.local
+/core/vendor
+/core/composer.lock
+/frontend/node_modules
+/frontend/.nuxt
+/frontend/.eslintcache
+/frontend/dist
+/frontend/package-lock.json
+/frontend/yarn.lock

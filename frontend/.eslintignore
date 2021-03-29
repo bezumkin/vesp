@@ -1,0 +1,5 @@
+/.nuxt
+/dist
+/node_modules
+/src/site/static
+/src/admin/static
