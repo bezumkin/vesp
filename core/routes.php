@@ -3,7 +3,7 @@
 use Slim\Routing\RouteCollectorProxy;
 
 /** @var Slim\App $app */
-return $app->group(
+$group = $app->group(
     '/api',
     function (RouteCollectorProxy $group) {
         $group->any('/security/login', App\Controllers\Security\Login::class);
@@ -21,3 +21,13 @@ return $app->group(
         );
     }
 );
+
+if (class_exists('\Clockwork\Clockwork')) {
+    $group->add(Vesp\Middlewares\Clockwork::class);
+    $app->get(
+        '/__clockwork/{id:(?:[0-9-]+|latest)}[/{direction:(?:next|previous)}[/{count:\d+}]]',
+        Vesp\Controllers\Data\Clockwork::class
+    );
+}
+
+return $group;

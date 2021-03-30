@@ -1,0 +1,47 @@
+{
+  "name": "vesp/vesp",
+  "license": "MIT",
+  "description": "Vesp Framework",
+  "authors": [
+    {
+      "name": "Vasily Naumkin",
+      "email": "bezumkin@yandex.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "core/src/"
+    }
+  },
+  "require": {
+    "ext-json": "*",
+    "akrabat/ip-address-middleware": "^1.0",
+    "peppeocchi/php-cron-scheduler": "^3.1",
+    "vesp/core": "^2.2.3"
+  },
+  "require-dev": {
+    "itsgoingd/clockwork": "^4.1"
+  },
+  "config": {
+    "sort-packages": true,
+    "vendor-dir": "core/vendor"
+  },
+  "scripts": {
+    "db:migrate": "cd core && vendor/bin/phinx migrate",
+    "db:rollback": "cd core && vendor/bin/phinx rollback",
+    "db:seed": "cd core && vendor/bin/phinx seed:run",
+    "node:install": "cd frontend && (yarn install || npm install)",
+    "node:update": "cd frontend && (yarn upgrade || npm update)",
+    "node:analyze": "cd frontend && (yarn analyze || npm analyze)",
+    "node:dev": "cd frontend && (yarn dev || npm dev)",
+    "node:build": "cd frontend && (yarn build || npm build)",
+    "node:generate": "cd frontend && (yarn generate || npm generate)",
+    "node:start": "cd frontend && (yarn start || npm start)",
+    "node:stop": "cd frontend && (yarn stop || npm stop)",
+    "node:restart": "cd frontend && (yarn restart || npm restart)",
+    "post-create-project-cmd": [
+      "@php -r \"file_exists('.env') || copy('.env.dist', '.env');\"",
+      "@composer node:install"
+    ]
+  }
+}

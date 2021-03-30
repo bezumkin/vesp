@@ -1,7 +1,7 @@
 <?php
 
 use Phinx\Seed\AbstractSeed;
-use Vesp\Models\UserRole;
+use App\Models\UserRole;
 
 class UserRoles extends AbstractSeed
 {

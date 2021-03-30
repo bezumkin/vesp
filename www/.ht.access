@@ -1,0 +1,30 @@
+DirectoryIndex 200.html
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+
+# Rewrite for API requests
+RewriteCond %{REQUEST_URI} ^/(api|__clockwork)/ [NC]
+RewriteRule ^(.*)$ api.php [L,QSA]
+
+# Redirect admin => admin/
+RewriteCond %{REQUEST_URI} ^/admin$ [NC]
+RewriteRule ^(.*)$ admin/ [R=301,L]
+
+# Rewrite admin/ requests
+RewriteCond %{REQUEST_URI} ^/admin [NC]
+RewriteRule ^(.*)$ dist/$1 [QSA]
+# 404 Not Found in admin/
+RewriteCond %{REQUEST_URI} ^/admin [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ dist/admin/200.html [L,QSA]
+
+# Rewrite all other requests
+RewriteCond %{REQUEST_URI} !^/(api|admin|dist) [NC]
+RewriteRule ^(.*)$ dist/site/$1 [QSA]
+RewriteCond %{REQUEST_URI} !^/(api|admin|dist) [NC]
+# Global 404 Not Found
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ dist/site/200.html [L,QSA]

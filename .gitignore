@@ -1,11 +1,14 @@
 /.idea
 /.env
 /.env.local
+/composer.lock
+/packages.json
 /core/vendor
-/core/composer.lock
 /frontend/node_modules
 /frontend/.nuxt
 /frontend/.eslintcache
 /frontend/dist
 /frontend/package-lock.json
 /frontend/yarn.lock
+/frontend/src/admin/static/sw.js
+/frontend/src/site/static/sw.js

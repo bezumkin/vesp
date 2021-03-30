@@ -6,6 +6,8 @@ use Psr\Http\Message\ResponseInterface;
 
 class Profile extends \Vesp\Controllers\User\Profile
 {
+    protected $scope = 'profile';
+
     public function patch(): ResponseInterface
     {
         foreach (['username', 'fullname', 'password', 'email'] as $key) {
