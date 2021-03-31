@@ -29,5 +29,3 @@ if (class_exists('\Clockwork\Clockwork')) {
         Vesp\Controllers\Data\Clockwork::class
     );
 }
-
-return $group;

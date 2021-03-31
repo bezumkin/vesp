@@ -1,5 +1,5 @@
 <template>
-  <div :key="$auth.loggedIn" class="min-vh-100 d-flex flex-column">
+  <div class="min-vh-100 d-flex flex-column">
     <app-navbar />
     <b-container class="flex-grow-1">
       <app-login />
