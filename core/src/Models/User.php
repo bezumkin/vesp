@@ -21,7 +21,7 @@ use Vesp\Models\UserRole;
  */
 class User extends \Vesp\Models\User
 {
-    protected $fillable = ['username', 'fullname', 'password', 'role_id', 'active'];
+    protected $fillable = ['username', 'password', 'fullname', 'email', 'role_id', 'active'];
 
     public function tokens(): HasMany
     {
