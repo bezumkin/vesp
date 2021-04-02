@@ -1,5 +1,5 @@
 <template>
-  <vesp-modal v-model="record" :url="url" :title="$t('models.user.title_one')" :before-submit="beforeSubmit">
+  <vesp-modal v-model="record" :url="url" :title="$t('models.user.title_one')">
     <template #form-fields>
       <form-user v-model="record" />
     </template>
@@ -21,11 +21,6 @@ export default {
         active: true,
       },
     }
-  },
-  methods: {
-    beforeSubmit() {
-
-    },
   },
 }
 </script>
