@@ -29,11 +29,8 @@ Config.fontawesome = _.merge(Config.fontawesome, {
   },
 })
 
-Config.i18n = _.merge(Config.i18n, {
-  vueI18n: {
-    messages: {en, de, ru},
-  },
-})
+// Specify vueI18n config as a function for smooth development
+Config.i18n.vueI18n = '@/lexicons/index.js'
 
 Config.bootstrapVue = _.merge(Config.bootstrapVue, {
   componentPlugins: _.union(Config.bootstrapVue.componentPlugins, [
