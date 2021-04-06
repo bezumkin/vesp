@@ -24,7 +24,7 @@
     </b-form-group>
 
     <b-form-group :label="$t('models.user.email')">
-      <b-form-input v-model.trim="record.email" type="email" required />
+      <b-form-input v-model.trim="record.email" type="email" />
     </b-form-group>
 
     <b-form-group :label="$t('models.user.role')">

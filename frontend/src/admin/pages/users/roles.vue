@@ -36,11 +36,20 @@ export default {
   },
   computed: {
     headerActions() {
-      return [{route: 'user-roles-create', icon: 'plus', title: this.$t('actions.create')}]
+      return [
+        {route: 'users-roles-create', icon: 'plus', title: this.$t('actions.create')},
+        {
+          route: 'users',
+          icon: 'arrow-left',
+          title: this.$t('models.user.title_many'),
+          variant: 'info',
+          'active-class': '',
+        },
+      ]
     },
     tableActions() {
       return [
-        {route: 'user-roles-edit-id', icon: 'edit', title: this.$t('actions.edit'), map: {id: 'id'}},
+        {route: 'users-roles-edit-id', icon: 'edit', title: this.$t('actions.edit'), map: {id: 'id'}},
         {function: 'onDelete', icon: 'times', title: this.$t('actions.delete'), variant: 'danger'},
       ]
     },

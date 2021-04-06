@@ -42,7 +42,10 @@ export default {
       return !this.$route.name.includes('roles')
     },
     headerActions() {
-      return [{route: 'users-create', icon: 'plus', title: this.$t('actions.create')}]
+      return [
+        {route: 'users-create', icon: 'plus', title: this.$t('actions.create')},
+        {route: 'users-roles', icon: 'users', title: this.$t('models.user_role.title_many'), variant: 'info'},
+      ]
     },
     tableActions() {
       return [
