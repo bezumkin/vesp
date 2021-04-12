@@ -10,7 +10,7 @@ class Files extends Migration
         $this->schema->create(
             'files',
             function (Blueprint $table) {
-                $table->increments('id');
+                $table->id();
                 $table->string('file');
                 $table->string('path');
                 $table->string('title')->nullable();
