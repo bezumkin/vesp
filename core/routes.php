@@ -28,4 +28,7 @@ if (class_exists('\Clockwork\Clockwork')) {
         '/__clockwork/{id:(?:[0-9-]+|latest)}[/{direction:(?:next|previous)}[/{count:\d+}]]',
         Vesp\Controllers\Data\Clockwork::class
     );
+    if (function_exists('xdebug_get_profiler_filename')) {
+        $app->get('/__clockwork/{id:[0-9-]+}/extended', Vesp\Controllers\Data\Clockwork::class);
+    }
 }
