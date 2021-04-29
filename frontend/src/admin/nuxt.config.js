@@ -1,8 +1,5 @@
 import _ from 'lodash'
 import {Config, findEnv, loadEnv} from '@vesp/frontend'
-import en from './lexicons/en'
-import de from './lexicons/de'
-import ru from './lexicons/ru'
 
 Config.ssr = false
 Config.srcDir = __dirname
