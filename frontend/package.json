@@ -24,7 +24,7 @@
   "dependencies": {
     "@nuxtjs/auth-next": "^5.0.0-1613647907.37b1156",
     "@nuxtjs/pwa": "^3.3.5",
-    "@vesp/frontend": "^0.3.3",
+    "@vesp/frontend": "^0.x",
     "concurrently": "^6.0.0",
     "pm2": "^4.5.5"
   },
