@@ -17,7 +17,7 @@ use Vesp\Models\UserRole;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
- * @property-read UserRole $role
+ * @property-read UserToken[] $tokens
  */
 class User extends \Vesp\Models\User
 {
