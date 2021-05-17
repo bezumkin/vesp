@@ -12,7 +12,6 @@ class Logout extends Controller
 
     public function post(): ResponseInterface
     {
-        $data = ['user_id' => $this->user->id, 'token' => $this->request->getAttribute('token')];
         /** @var UserToken $token */
         $user_token = $token = UserToken::query()
             ->where(['user_id' => $this->user->id, 'token' => $this->request->getAttribute('token')])
