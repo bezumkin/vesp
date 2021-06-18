@@ -16,7 +16,7 @@ class Users extends ModelController
         if ($query = $this->getProperty('query')) {
             $c->where(
                 static function (Builder $c) use ($query) {
-                    $c->where('fullname', 'LIKE', "%{$query}%");
+                    $c->where('username', 'LIKE', "%{$query}%");
                     $c->orWhere('fullname', 'LIKE', "%{$query}%");
                 }
             );
