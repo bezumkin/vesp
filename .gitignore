@@ -12,3 +12,5 @@
 /frontend/yarn.lock
 /frontend/src/admin/static/sw.js
 /frontend/src/site/static/sw.js
+/tmp
+/upload
