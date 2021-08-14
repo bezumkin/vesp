@@ -7,3 +7,4 @@
 /.gitignore         export-ignore
 /LICENSE.md         export-ignore
 /README.md          export-ignore
+/composer.lock      export-ignore

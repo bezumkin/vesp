@@ -1,7 +1,6 @@
 /.idea
 /.env
 /.env.local
-/composer.lock
 /packages.json
 /core/vendor
 /frontend/node_modules
