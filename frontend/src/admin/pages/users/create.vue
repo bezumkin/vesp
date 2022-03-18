@@ -6,8 +6,8 @@
   </vesp-modal>
 </template>
 <script>
-import FormUser from '@/components/forms/user'
 import {url} from '../users'
+import FormUser from '@/components/forms/user'
 
 export {url}
 export default {

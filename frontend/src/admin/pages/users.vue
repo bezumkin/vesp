@@ -49,7 +49,7 @@ export default {
     },
     tableActions() {
       return [
-        {route: 'users-edit-id', icon: 'edit', title: this.$t('actions.edit'), map: {id: 'id'}},
+        {route: 'users-edit-id', icon: 'edit', title: this.$t('actions.edit')},
         {function: 'onDelete', icon: 'times', title: this.$t('actions.delete'), variant: 'danger'},
       ]
     },
