@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import merge from 'deepmerge'
 import vespDe from '@vesp/frontend/lexicons/de'
 import vespEn from '@vesp/frontend/lexicons/en'
 import vespRu from '@vesp/frontend/lexicons/ru'
@@ -10,9 +10,9 @@ export default () => {
   return {
     fallbackLocale: 'en',
     messages: {
-      de: _.merge(vespDe, localDe),
-      en: _.merge(vespEn, localEn),
-      ru: _.merge(vespRu, localRu),
+      de: merge(vespDe, localDe),
+      en: merge(vespEn, localEn),
+      ru: merge(vespRu, localRu),
     },
   }
 }

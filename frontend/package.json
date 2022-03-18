@@ -26,6 +26,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@vesp/frontend": "^0.x",
     "concurrently": "^6.0.0",
+    "deepmerge": "^4.2.2",
     "pm2": "^4.5.5"
   },
   "devDependencies": {
