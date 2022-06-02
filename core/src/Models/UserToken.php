@@ -21,15 +21,10 @@ class UserToken extends Model
 {
     public $incrementing = false;
     protected $primaryKey = 'token';
+    protected $keyType = 'string';
     protected $guarded = ['created_at', 'updated_at'];
-    protected $dates = [
-        'valid_till',
-        'created_at',
-        'updated_at',
-    ];
-    protected $casts = [
-        'active' => 'boolean',
-    ];
+    protected $dates = ['valid_till'];
+    protected $casts = ['active' => 'boolean'];
 
     public function user(): BelongsTo
     {

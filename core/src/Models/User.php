@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Vesp\Models\UserRole;
 
 /**
  * @property int $id
