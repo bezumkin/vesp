@@ -2,6 +2,7 @@
 
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index';
+@import "@fortawesome/fontawesome-svg-core/styles.css";
 
 .page-enter-active, .page-leave-active, .layout-enter-active, .layout-leave-active {
   transition: opacity 0.1s
