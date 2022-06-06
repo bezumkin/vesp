@@ -2,9 +2,15 @@ import {Config, findEnv, loadEnv} from '@vesp/frontend'
 
 Config.ssr = true
 Config.srcDir = __dirname
-Config.target = 'static'
+Config.target = 'server'
 Config.buildDir = '.nuxt/site'
+Config.build = {
+  babel: {
+    compact: false,
+  },
+}
 Config.generate = {
+  cache: false,
   dir: 'dist/site',
   exclude: [/^\//],
 }
