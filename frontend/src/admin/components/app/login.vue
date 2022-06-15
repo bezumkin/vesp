@@ -13,7 +13,7 @@
         </b-form-group>
 
         <b-form-group class="pt-3">
-          <b-form-input v-model.trim="login.password" :placeholder="$t('security.password')" required type="password" />
+          <vesp-input-password v-model.trim="login.password" :placeholder="$t('security.password')" required />
         </b-form-group>
 
         <input type="submit" class="d-none" />
