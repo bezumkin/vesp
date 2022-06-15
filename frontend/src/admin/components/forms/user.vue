@@ -28,7 +28,7 @@
     </b-form-group>
 
     <b-form-group :label="$t('models.user.role')">
-      <vesp-input-combo-box v-model="record.role_id" url="admin/user-roles" :input-props="{required: true}" />
+      <vesp-input-combo-box v-model="record.role_id" url="admin/user-roles" required />
     </b-form-group>
 
     <b-form-group>
