@@ -5,19 +5,23 @@
     </template>
   </vesp-modal>
 </template>
+
 <script>
 import {url} from '../users'
-import FormUser from '@/components/forms/user'
+import FormUser from '../../components/forms/user'
 
 export {url}
 export default {
+  name: 'UserCreatePage',
   components: {FormUser},
   data() {
     return {
       url,
       record: {
+        username: '',
         fullname: '',
         password: '',
+        role_id: null,
         active: true,
       },
     }

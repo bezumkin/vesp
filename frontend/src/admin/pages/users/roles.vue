@@ -16,6 +16,7 @@
 <script>
 export const url = 'admin/user-roles'
 export default {
+  name: 'UserRolesPage',
   validate({app}) {
     return app.$hasScope('users')
   },

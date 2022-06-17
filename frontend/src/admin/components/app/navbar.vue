@@ -37,8 +37,8 @@ export default {
   },
   methods: {
     async onLogout() {
-      await this.$auth.logout('local')
-      this.$toast.info(String(this.$t('security.goodbye')))
+      await this.$auth.logout()
+      this.$toast.info(this.$t('security.goodbye'))
     },
   },
 }

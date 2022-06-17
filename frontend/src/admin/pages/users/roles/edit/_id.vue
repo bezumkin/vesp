@@ -2,6 +2,7 @@
 import Create, {url} from '../create'
 
 export default {
+  name: 'UserRolesEditPage',
   extends: Create,
   async asyncData({app, params, error}) {
     try {

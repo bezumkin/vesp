@@ -1,5 +1,5 @@
 import {hasScope} from '@vesp/frontend/utils'
-import menuItems from '@/plugins/menu'
+import menuItems from '../plugins/menu'
 
 export const state = () => ({
   menu: menuItems,

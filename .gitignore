@@ -1,15 +1,11 @@
 /.idea
 /.env
 /.env.local
-/packages.json
 /core/vendor
 /frontend/node_modules
 /frontend/.nuxt
 /frontend/.eslintcache
 /frontend/dist
-/frontend/package-lock.json
-/frontend/yarn.lock
-/frontend/src/admin/static/sw.js
 /frontend/src/site/static/sw.js
 /tmp
 /upload

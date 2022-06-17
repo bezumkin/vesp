@@ -5,18 +5,21 @@
     </template>
   </vesp-modal>
 </template>
+
 <script>
 import {url} from '../roles'
-import FormUserRole from '@/components/forms/user-role'
+import FormUserRole from '../../../components/forms/user-role'
 
 export {url}
 export default {
+  name: 'UserRolesCreatePage',
   components: {FormUserRole},
   data() {
     return {
       url,
       record: {
         title: '',
+        scope: [],
       },
     }
   },

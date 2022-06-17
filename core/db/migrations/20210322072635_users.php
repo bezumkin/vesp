@@ -27,7 +27,7 @@ class Users extends Migration
                 $table->string('fullname')->nullable();
                 $table->string('email')->nullable();
                 $table->foreignId('role_id')
-                    ->constrained('user_roles')->onDelete('cascade');
+                    ->constrained('user_roles')->cascadeOnDelete();
                 $table->boolean('active')->default(true)->index();
                 $table->timestamps();
             }
@@ -38,7 +38,7 @@ class Users extends Migration
             function (Blueprint $table) {
                 $table->string('token')->primary();
                 $table->foreignId('user_id')
-                    ->constrained('users')->onDelete('cascade');
+                    ->constrained('users')->cascadeOnDelete();
                 $table->timestamp('valid_till')->index();
                 $table->string('ip', 16)->nullable();
                 $table->boolean('active')->default(true);

@@ -6,10 +6,15 @@ use Slim\Routing\RouteCollectorProxy;
 $group = $app->group(
     '/api',
     function (RouteCollectorProxy $group) {
-        $group->any('/security/login', App\Controllers\Security\Login::class);
-        $group->any('/security/logout', App\Controllers\Security\Logout::class);
-        $group->any('/user/profile', App\Controllers\User\Profile::class);
+        $group->group(
+            '/security',
+            static function (RouteCollectorProxy $group) {
+                $group->any('/login', App\Controllers\Security\Login::class);
+                $group->any('/logout', App\Controllers\Security\Logout::class);
+            }
+        );
 
+        $group->any('/user/profile', App\Controllers\User\Profile::class);
         $group->get('/image/{id}', App\Controllers\Image::class);
 
         $group->group(
@@ -19,6 +24,14 @@ $group = $app->group(
                 $group->any('/user-roles[/{id}]', App\Controllers\Admin\UserRoles::class);
             }
         );
+
+        /*
+        $group->group(
+            '/web',
+            static function (RouteCollectorProxy $group) {
+            }
+        );
+        */
     }
 );
 

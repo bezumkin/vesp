@@ -27,9 +27,12 @@
     "vendor-dir": "core/vendor"
   },
   "scripts": {
+    "db:create": "cd core && vendor/bin/phinx create",
     "db:migrate": "cd core && vendor/bin/phinx migrate",
     "db:rollback": "cd core && vendor/bin/phinx rollback",
+    "db:rollback-all": "cd core && vendor/bin/phinx rollback -t0",
     "db:seed": "cd core && vendor/bin/phinx seed:run",
+    "db:seed-one": "cd core && vendor/bin/phinx seed:run -s",
     "node:install": "cd frontend && (yarn install || npm install)",
     "node:update": "cd frontend && (yarn upgrade || npm update)",
     "node:analyze": "cd frontend && (yarn analyze || npm run analyze)",

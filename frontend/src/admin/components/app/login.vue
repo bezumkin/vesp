@@ -47,8 +47,8 @@ export default {
     async submit() {
       this.loading = true
       try {
-        await this.$auth.loginWith('local', {data: this.login})
-        await this.$toast.info(String(this.$t('security.greetings')))
+        await this.$auth.login({data: this.login})
+        await this.$toast.info(this.$t('security.greetings'))
         this.onReset()
       } catch (err) {
         console.error(err)
