@@ -2,6 +2,9 @@
 /.env
 /.env.local
 /core/vendor
+/docker/.env
+/docker/log
+/docker/mariadb/data
 /frontend/node_modules
 /frontend/.nuxt
 /frontend/.eslintcache

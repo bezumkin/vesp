@@ -1,0 +1,67 @@
+version: '3.9'
+services:
+
+  mariadb:
+    image: mariadb:${MARIADB_VERSION}
+    environment:
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_USER=${MARIADB_USERNAME}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+    volumes:
+      - ./mariadb/data:/var/lib/mysql
+    ports:
+      - ${MARIADB_PORT}:3306
+    working_dir: /vesp
+
+  nginx:
+    image: nginx:${NGINX_VERSION}
+    volumes:
+      - ./nginx/config.conf:/etc/nginx/conf.d/default.conf
+      - ./log/nginx:/var/log/nginx
+      - ../frontend:/vesp/frontend
+      - ../www:/vesp/www
+    ports:
+      - ${NGINX_PORT}:80
+    depends_on:
+      - php-fpm
+      - mariadb
+    working_dir: /vesp
+
+  php-fpm:
+    build:
+      context: ./php-fpm
+      args:
+        - PHP_VERSION
+    volumes:
+      - ./.env:/vesp/.env
+      - ./php-fpm/config.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./log/php-fpm:/var/log/php
+      - ../core:/vesp/core
+      - ../www:/vesp/www
+      - ../upload:/vesp/upload
+      - ../tmp:/vesp/tmp
+      - ../composer.json:/vesp/composer.json
+    cap_add:
+      - SYS_PTRACE
+    depends_on:
+      - mariadb
+    environment:
+      PHP_IDE_CONFIG: "serverName=VespDocker"
+    working_dir: /vesp
+
+  node:
+    build:
+      context: ./node
+      args:
+        - NODE_VERSION
+    volumes:
+      - ./.env:/vesp/.env
+      - ../frontend:/vesp/frontend
+    environment:
+      NODE_OPTIONS: "--openssl-legacy-provider"
+    ports:
+      - ${NODE_ADMIN_PORT}:4000
+      - ${NODE_SITE_PORT}:4100
+    working_dir: /vesp/frontend
