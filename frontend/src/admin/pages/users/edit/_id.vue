@@ -10,6 +10,7 @@ export default {
   async asyncData({app, params, error}) {
     try {
       const {data: record} = await app.$axios.get(url + '/' + params.id)
+      record.password = ''
       return {record}
     } catch (e) {
       error({statusCode: e.statusCode, message: e.data})
