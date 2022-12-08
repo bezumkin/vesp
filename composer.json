@@ -17,7 +17,7 @@
     "ext-json": "*",
     "akrabat/ip-address-middleware": "^2.1",
     "peppeocchi/php-cron-scheduler": "^4.0",
-    "vesp/core": "^2.3.0"
+    "vesp/core": "^2.7.0"
   },
   "require-dev": {
     "itsgoingd/clockwork": "^4.1"
