@@ -55,13 +55,11 @@ services:
       - mariadb
     environment:
       PHP_IDE_CONFIG: "serverName=VespDocker"
+      COMPOSER_ALLOW_SUPERUSER: 1
     working_dir: /vesp
 
   node:
-    build:
-      context: ./node
-      args:
-        - NODE_VERSION
+    image: node:${NODE_VERSION}-alpine
     volumes:
       - ./.env:/vesp/.env
       - frontend:/vesp/frontend
@@ -71,6 +69,7 @@ services:
       - nginx
     network_mode: 'service:nginx'
     working_dir: /vesp/frontend
+    command: sh -c 'yarn && ([ -d dist ] || yarn generate) && yarn dev'
 
 volumes:
   core:
