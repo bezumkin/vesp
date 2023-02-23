@@ -11,6 +11,9 @@ return [
         'seeds' => BASE_DIR . 'core/db/seeds',
     ],
     'migration_base_class' => Migration::class,
+    'templates' => [
+        'style' => 'up_down',
+    ],
     'environments' => [
         'default_migration_table' => getenv('DB_PREFIX') . 'migrations',
         'default_environment' => 'dev',
