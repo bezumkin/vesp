@@ -8,3 +8,4 @@
 /LICENSE.md         export-ignore
 /README.md          export-ignore
 /composer.lock      export-ignore
+/docker-compose.yml export-ignore

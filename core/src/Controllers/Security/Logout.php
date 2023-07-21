@@ -8,7 +8,7 @@ use Vesp\Controllers\Controller;
 
 class Logout extends Controller
 {
-    protected $scope = 'profile';
+    protected string|array $scope = 'profile';
 
     public function post(): ResponseInterface
     {

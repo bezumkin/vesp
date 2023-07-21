@@ -15,24 +15,24 @@
   },
   "require": {
     "ext-json": "*",
-    "akrabat/ip-address-middleware": "^2.1",
-    "peppeocchi/php-cron-scheduler": "^4.0",
-    "vesp/core": "^2.8"
+    "akrabat/ip-address-middleware": "^2.1.0",
+    "peppeocchi/php-cron-scheduler": "^v4.0",
+    "vesp/core": "^3.0.0"
   },
   "require-dev": {
-    "itsgoingd/clockwork": "^4.1"
+    "itsgoingd/clockwork": "^v5.1"
   },
   "config": {
     "sort-packages": true,
     "vendor-dir": "core/vendor"
   },
   "scripts": {
-    "db:create": "cd core && vendor/bin/phinx create",
-    "db:migrate": "cd core && vendor/bin/phinx migrate",
-    "db:rollback": "cd core && vendor/bin/phinx rollback",
-    "db:rollback-all": "cd core && vendor/bin/phinx rollback -t0",
-    "db:seed": "cd core && vendor/bin/phinx seed:run",
-    "db:seed-one": "cd core && vendor/bin/phinx seed:run -s",
+    "db:create": "phinx create -c core/phinx.php",
+    "db:migrate": "phinx migrate -c core/phinx.php",
+    "db:rollback": "phinx rollback -c core/phinx.php",
+    "db:rollback-all": "phinx rollback -c core/phinx.php -t0",
+    "db:seed": "phinx seed:run -c core/phinx.php",
+    "db:seed-one": "phinx seed:run -c core/phinx.php -s",
     "node:install": "cd frontend && (yarn install || npm install)",
     "node:update": "cd frontend && (yarn upgrade || npm update)",
     "node:analyze": "cd frontend && (yarn analyze || npm run analyze)",

@@ -9,7 +9,7 @@ services:
       - MARIADB_USER=${MARIADB_USERNAME}
       - MARIADB_PASSWORD=${MARIADB_PASSWORD}
     volumes:
-      - ./mariadb/data:/var/lib/mysql
+      - ./docker/mariadb:/var/lib/mysql
     ports:
       - ${MARIADB_PORT}:3306
     working_dir: /vesp
@@ -19,10 +19,9 @@ services:
     environment:
       - NGINX_PORT=${NGINX_PORT}
     volumes:
-      - ./nginx:/etc/nginx/templates
-      - ./log/nginx:/var/log/nginx
-      - ../frontend:/vesp/frontend
-      - ../www:/vesp/www
+      - ./docker/nginx:/etc/nginx/templates
+      - ./frontend:/vesp/frontend
+      - ./www:/vesp/www
     ports:
       - ${NGINX_PORT}:80
       - ${NODE_ADMIN_PORT}:4000
@@ -34,37 +33,34 @@ services:
 
   php-fpm:
     build:
-      context: ./php-fpm
+      dockerfile: ./docker/php-fpm/dev.dockerfile
       args:
         - PHP_VERSION
     volumes:
+      - ./core:/vesp/core
+      - ./tmp:/vesp/tmp
+      - ./upload:/vesp/upload
+      - ./www:/vesp/www
       - ./.env:/vesp/.env
-      - ./php-fpm/config.conf:/usr/local/etc/php-fpm.d/www.conf
-      - ./php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-      - ./log/php-fpm:/var/log/php
-      - ../core:/vesp/core
-      - ../www:/vesp/www
-      - ../upload:/vesp/upload
-      - ../tmp:/vesp/tmp
-      - ../composer.json:/vesp/composer.json
-    cap_add:
-      - SYS_PTRACE
+      - ./composer.json:/vesp/composer.json
+      - ./composer.lock:/vesp/composer.lock
     depends_on:
       - mariadb
     environment:
-      PHP_IDE_CONFIG: "serverName=VespDocker"
-      COMPOSER_ALLOW_SUPERUSER: 1
+      - PHP_IDE_CONFIG=serverName=VespDocker
+      - COMPOSER_ALLOW_SUPERUSER=1
     working_dir: /vesp
+    command: sh -c 'composer install && php-fpm'
 
   node:
     image: node:${NODE_VERSION}-alpine
     volumes:
+      - ./frontend:/vesp/frontend
       - ./.env:/vesp/.env
-      - ../frontend:/vesp/frontend
     environment:
-      NODE_OPTIONS: "--openssl-legacy-provider"
+      - NODE_OPTIONS=--openssl-legacy-provider
     depends_on:
       - nginx
     network_mode: 'service:nginx'
     working_dir: /vesp/frontend
-    command: sh -c 'yarn && ([ -d dist ] || yarn generate) && yarn dev'
+    command: sh -c 'yarn && yarn dev'

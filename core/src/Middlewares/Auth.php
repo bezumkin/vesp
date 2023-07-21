@@ -10,7 +10,7 @@ use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 
 class Auth extends \Vesp\Middlewares\Auth
 {
-    protected $model = User::class;
+    protected string $model = User::class;
 
     public function __invoke(Request $request, RequestHandler $handler): ResponseInterface
     {

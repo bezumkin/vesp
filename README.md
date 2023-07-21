@@ -4,8 +4,8 @@ based on top of [Vue], [Eloquent], [Slim] and [Phinx].
 
 ## Requirements
 
-- PHP 7.3+ with Composer
-- Node JS 10+ with Npm
+- PHP 8.1+ with Composer
+- Node JS 18+ with Npm
 - Nginx or Apache2
 
 ## Quick Start
@@ -130,7 +130,7 @@ You can run local development server with `composer node:dev` command.
 
 
 [Vue]:https://vuejs.org
-[Eloquent]:https://laravel.com/docs/8.x/eloquent
+[Eloquent]:https://laravel.com/docs/10.x/eloquent
 [Slim]:https://www.slimframework.com/
 [Phinx]:https://book.cakephp.org/phinx/0/en/index.html
 

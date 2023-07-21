@@ -8,8 +8,8 @@ use Vesp\Controllers\ModelController;
 
 class Users extends ModelController
 {
-    protected $scope = 'users';
-    protected $model = User::class;
+    protected string|array $scope = 'users';
+    protected string $model = User::class;
 
     protected function beforeCount(Builder $c): Builder
     {

@@ -1,3 +1,13 @@
+gzip_vary on;
+gzip_proxied any;
+gzip_comp_level 6;
+gzip_buffers 16 8k;
+gzip_http_version 1.1;
+gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+client_max_body_size 100M;
+client_body_buffer_size 100M;
+
 server {
     listen 80 default;
     listen ${NGINX_PORT};
@@ -14,33 +24,27 @@ server {
     }
 
     location /admin/ {
-        root /vesp/frontend/dist/;
-        access_log off;
-        log_not_found off;
-        gzip on;
-        gzip_types text/css application/javascript application/x-javascript text/javascript image/svg+xml;
-        expires 1y;
-        try_files $uri /admin/200.html;
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_redirect off;
+        proxy_read_timeout 240s;
+        proxy_pass http://127.0.0.1:4000;
     }
 
     location / {
-        # proxy_http_version 1.1;
-        # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        # proxy_set_header X-Real-IP $remote_addr;
-        # proxy_set_header Host $http_host;
-        # proxy_set_header Upgrade $http_upgrade;
-        # proxy_set_header Connection "upgrade";
-        # proxy_redirect off;
-        # proxy_read_timeout 240s;
-        # proxy_pass http://127.0.0.1:20001;
-
-        root /vesp/frontend/dist/site/;
-        access_log off;
-        log_not_found off;
-        gzip on;
-        gzip_types text/css application/javascript application/x-javascript text/javascript image/svg+xml;
-        expires 1y;
-        try_files $uri /200.html;
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_redirect off;
+        proxy_read_timeout 240s;
+        proxy_pass http://127.0.0.1:4100;
     }
 
     location ~ \.php$ {

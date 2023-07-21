@@ -15,9 +15,7 @@
     "dev": "concurrently yarn:dev:admin yarn:dev:site",
     "build": "concurrently yarn:build:admin yarn:build:site",
     "generate": "concurrently yarn:generate:admin yarn:generate:site",
-    "start": "yarn build:site && pm2 start --env production",
-    "stop": "pm2 kill",
-    "restart": "yarn build:site && pm2 restart all --update-env",
+    "start": "concurrently yarn:start:admin yarn:start:site",
     "lint:check": "eslint --ext .js,.vue ./",
     "lint:fix": "eslint --fix --ext .js,.vue ./"
   },
@@ -27,7 +25,6 @@
     "@vesp/frontend": "^0.x",
     "concurrently": "^6.0.0",
     "deepmerge": "^4.2.2",
-    "pm2": "^4.5.5",
     "yarn": "^1.22.18"
   },
   "devDependencies": {
