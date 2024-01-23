@@ -3,6 +3,9 @@
 use Illuminate\Database\Schema\Blueprint;
 use Vesp\Services\Migration;
 
+require_once __DIR__ . '/../seeds/SeedUserRoles.php';
+require_once __DIR__ . '/../seeds/SeedUsers.php';
+
 class Users extends Migration
 {
 
@@ -47,6 +50,13 @@ class Users extends Migration
                 $table->index(['token', 'user_id', 'active']);
             }
         );
+
+        if ($adapter = $this->getAdapter()) {
+            $input = $this->getInput();
+            $output = $this->getOutput();
+            (new SeedUserRoles())->setAdapter($adapter)->setInput($input)->setOutput($output)->run();
+            (new SeedUsers())->setAdapter($adapter)->setInput($input)->setOutput($output)->run();
+        }
     }
 
 

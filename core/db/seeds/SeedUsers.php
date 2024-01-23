@@ -3,7 +3,7 @@
 use App\Models\User;
 use Phinx\Seed\AbstractSeed;
 
-class Users extends AbstractSeed
+class SeedUsers extends AbstractSeed
 {
     public function getDependencies(): array
     {

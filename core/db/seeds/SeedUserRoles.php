@@ -3,7 +3,7 @@
 use Phinx\Seed\AbstractSeed;
 use App\Models\UserRole;
 
-class UserRoles extends AbstractSeed
+class SeedUserRoles extends AbstractSeed
 {
     public function run(): void
     {
