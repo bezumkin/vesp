@@ -5,9 +5,11 @@
 /docker/.env
 /docker/log
 /docker/mariadb
+/docker-compose.override.yml
 /frontend/node_modules
 /frontend/.nuxt
 /frontend/.eslintcache
+/frontend/.stylelintcache
 /frontend/dist
 /frontend/src/site/static/sw.js
 /tmp

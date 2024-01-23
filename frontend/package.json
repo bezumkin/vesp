@@ -1,33 +1,48 @@
 {
   "license": "MIT",
   "scripts": {
-    "analyze:admin": "nuxt build --analyze --config-file src/admin/nuxt.config.js",
-    "analyze:site": "nuxt build --analyze --config-file src/site/nuxt.config.js",
-    "dev:admin": "nuxt --config-file src/admin/nuxt.config.js -p=4000 -H=0.0.0.0",
-    "dev:site": "nuxt --config-file src/site/nuxt.config.js -p=4100 -H=0.0.0.0",
-    "build:admin": "nuxt build --config-file src/admin/nuxt.config.js",
-    "build:site": "nuxt build --config-file src/site/nuxt.config.js",
-    "generate:admin": "nuxt generate --config-file src/admin/nuxt.config.js --quiet",
-    "generate:site": "nuxt generate --config-file src/site/nuxt.config.js --quiet",
-    "start:admin": "nuxt start --config-file src/admin/nuxt.config.js -p=4000",
-    "start:site": "nuxt start --config-file src/site/nuxt.config.js -p=4100",
-    "analyze": "concurrently yarn:analyze:admin yarn:analyze:site",
-    "dev": "concurrently yarn:dev:admin yarn:dev:site",
-    "build": "concurrently yarn:build:admin yarn:build:site",
-    "generate": "concurrently yarn:generate:admin yarn:generate:site",
-    "start": "concurrently yarn:start:admin yarn:start:site",
-    "lint:check": "eslint --ext .js,.vue ./",
-    "lint:fix": "eslint --fix --ext .js,.vue ./"
+    "analyze": "nuxt analyze --dotenv ../.env",
+    "build": "nuxt build --dotenv ../.env",
+    "dev": "nuxt dev --dotenv ../.env",
+    "generate": "nuxt generate --dotenv ../.env",
+    "start": "nuxt start --dotenv ../.env",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "eslint": "eslint --ext .js,.ts,.vue ./src",
+    "eslint:fix": "eslint --fix --ext .js,.ts,.vue ./src",
+    "stylelint": "stylelint ./src/assets/**/*.scss",
+    "stylelint:fix": "stylelint --fix --quiet ./src/assets/**/*.scss"
   },
   "dependencies": {
-    "@nuxtjs/auth-next": "^5.0.0-1613647907.37b1156",
-    "@nuxtjs/pwa": "^3.3.5",
-    "@vesp/frontend": "^0.x",
-    "concurrently": "^6.0.0",
-    "deepmerge": "^4.2.2",
-    "yarn": "^1.22.18"
+    "@vesp/frontend": "^3.0.0",
+    "nuxt": "^3.9.0"
   },
   "devDependencies": {
-    "@nuxt/types": "~2.15.0"
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@nuxtjs/stylelint-module": "^5.1.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "postcss": "^8.4.29",
+    "postcss-html": "^1.5.0",
+    "postcss-scss": "^4.0.8",
+    "prettier": "^3.0.3",
+    "rollup": "4.9.5",
+    "sass": "^1.67.0",
+    "sass-loader": "^13.3.2",
+    "stylelint": "^15.10.3",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard-scss": "^11.0.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.12",
+    "vite-plugin-stylelint": "^5.1.1",
+    "vue": "^3.3.4",
+    "vue-eslint-parser": "^9.3.1",
+    "vue-tsc": "^1.8.15"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
   }
 }

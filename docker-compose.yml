@@ -2,65 +2,69 @@ version: '3.9'
 services:
 
   mariadb:
-    image: mariadb:${MARIADB_VERSION}
+    image: mariadb:${MARIADB_VERSION:-11}
     environment:
       - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
-      - MARIADB_DATABASE=${MARIADB_DATABASE}
-      - MARIADB_USER=${MARIADB_USERNAME}
-      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE:-vesp}
+      - MARIADB_USER=${MARIADB_USERNAME:-vesp}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD:-vesp}
+      - TZ=${TZ:-Europe/Moscow}
     volumes:
       - ./docker/mariadb:/var/lib/mysql
-    ports:
-      - ${MARIADB_PORT}:3306
-    working_dir: /vesp
+    restart: unless-stopped
 
   nginx:
-    image: nginx:${NGINX_VERSION}
+    image: nginx:${NGINX_VERSION:-1.25}
     environment:
-      - NGINX_PORT=${NGINX_PORT}
+      - NGINX_PORT=${NGINX_PORT:-8080}
+      - NODE_PORT=${NODE_PORT:-3000}
+      - TZ=${TZ:-Europe/Moscow}
     volumes:
       - ./docker/nginx:/etc/nginx/templates
       - ./frontend:/vesp/frontend
       - ./www:/vesp/www
     ports:
-      - ${NGINX_PORT}:80
-      - ${NODE_ADMIN_PORT}:4000
-      - ${NODE_SITE_PORT}:4100
+      - ${NGINX_HOST:-127.0.0.1}:${NGINX_PORT:-8080}:80
+    restart: unless-stopped
     depends_on:
       - php-fpm
       - mariadb
-    working_dir: /vesp
 
   php-fpm:
     build:
-      dockerfile: ./docker/php-fpm/dev.dockerfile
+      context: ./docker/php-fpm
       args:
-        - PHP_VERSION
+        - PHP_VERSION=${PHP_VERSION:-8.3}
+        - PHP_XDEBUG=${PHP_XDEBUG:-0}
+        - TZ=${TZ:-Europe/Moscow}
     volumes:
-      - ./core:/vesp/core
-      - ./tmp:/vesp/tmp
-      - ./upload:/vesp/upload
-      - ./www:/vesp/www
       - ./.env:/vesp/.env
-      - ./composer.json:/vesp/composer.json
-      - ./composer.lock:/vesp/composer.lock
+      - ./core:/vesp/core
+      - ./www:/vesp/www
+      - ./upload:/vesp/upload
+      - ./tmp:/vesp/tmp
+      - ./frontend:/vesp/frontend
+    cap_add:
+      - SYS_PTRACE
     depends_on:
       - mariadb
     environment:
-      - PHP_IDE_CONFIG=serverName=VespDocker
       - COMPOSER_ALLOW_SUPERUSER=1
-    working_dir: /vesp
-    command: sh -c 'composer install && php-fpm'
+      - TZ=${TZ:-Europe/Moscow}
+    restart: unless-stopped
+    working_dir: /vesp/core
+    command: sh -c 'composer install --no-dev && composer db:migrate && cron && php-fpm'
 
   node:
-    image: node:${NODE_VERSION}-alpine
+    image: node:${NODE_VERSION:-21}
     volumes:
-      - ./frontend:/vesp/frontend
       - ./.env:/vesp/.env
-    environment:
-      - NODE_OPTIONS=--openssl-legacy-provider
+      - ./frontend:/vesp/frontend
     depends_on:
       - nginx
+    environment:
+      - TZ=${TZ:-Europe/Moscow}
     network_mode: 'service:nginx'
+    restart: unless-stopped
     working_dir: /vesp/frontend
-    command: sh -c 'yarn && yarn dev'
+    command: sh -c 'rm -rf /tmp/* && yarn --prod && yarn build && node ./.output/server/index.mjs'

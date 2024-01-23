@@ -1,0 +1,36 @@
+{
+  "name": "vesp/vesp",
+  "license": "MIT",
+  "description": "Vesp Framework",
+  "authors": [
+    {
+      "name": "Vasily Naumkin",
+      "email": "bezumkin@yandex.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "ext-json": "*",
+    "akrabat/ip-address-middleware": "^2.1",
+    "peppeocchi/php-cron-scheduler": "^4.0",
+    "vesp/core": "^3.0"
+  },
+  "require-dev": {
+    "itsgoingd/clockwork": "^v5.1"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "scripts": {
+    "db:create": "phinx create",
+    "db:migrate": "phinx migrate",
+    "db:rollback": "phinx rollback",
+    "db:rollback-all": "phinx rollback -t0",
+    "db:seed": "phinx seed:run",
+    "db:seed-one": "phinx seed:run -s"
+  }
+}

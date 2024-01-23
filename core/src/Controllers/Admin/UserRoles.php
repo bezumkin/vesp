@@ -19,4 +19,11 @@ class UserRoles extends ModelController
 
         return $c;
     }
+
+    protected function afterCount(Builder $c): Builder
+    {
+        $c->withCount('users');
+
+        return $c;
+    }
 }
