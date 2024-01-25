@@ -10,6 +10,7 @@
 /frontend/.nuxt
 /frontend/.eslintcache
 /frontend/.stylelintcache
+/frontend/.output
 /frontend/dist
 /frontend/src/site/static/sw.js
 /tmp
