@@ -2,7 +2,7 @@
   <b-col xl="10" class="m-auto">
     <b-overlay :show="loading" opacity="0.5">
       <b-form @submit.prevent="onSubmit">
-        <forms-user v-model="form" :show-group="false" />
+        <forms-user v-model="form" :show-group="false" :show-status="false" />
         <div class="text-center mt-3">
           <b-button variant="primary" type="submit">{{ t('actions.save') }}</b-button>
         </div>

@@ -22,6 +22,9 @@ const sections = computed(() => getAdminSections())
 function checkAccess() {
   if (!user.value) {
     showError({statusCode: 401, statusMessage: 'Unauthorized'})
+    nextTick(() => {
+      showLogin(true)
+    })
   } else if (!sections.value.length) {
     showError({statusCode: 403, statusMessage: 'Access Denied'})
   } else if (route.name === 'admin') {

@@ -20,13 +20,11 @@
       <vesp-input-combo-box v-model="record.role_id" url="admin/user-roles" required />
     </b-form-group>
 
-    <b-row v-if="showStatus" class="flex-md-nowrap justify-content-md-between">
-      <b-form-group v-if="showStatus" class="col-md-auto">
-        <b-form-checkbox v-model="record.active">
-          {{ $t('models.user.active') }}
-        </b-form-checkbox>
-      </b-form-group>
-    </b-row>
+    <b-form-group v-if="showStatus" class="col-md-auto">
+      <b-form-checkbox v-model="record.active">
+        {{ $t('models.user.active') }}
+      </b-form-checkbox>
+    </b-form-group>
   </div>
 </template>
 
@@ -43,10 +41,6 @@ const props = defineProps({
     default: true,
   },
   showStatus: {
-    type: Boolean,
-    default: true,
-  },
-  showNotify: {
     type: Boolean,
     default: true,
   },

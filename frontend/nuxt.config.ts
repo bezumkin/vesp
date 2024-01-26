@@ -19,6 +19,7 @@ const config: NuxtConfig = {
   },
   routeRules: {
     '/admin/**': {ssr: false},
+    '/user/**': {ssr: false},
   },
   runtimeConfig: {
     public: {

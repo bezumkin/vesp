@@ -62,7 +62,14 @@ defineProps({
 const {t} = useI18n()
 const {loggedIn, user, login, logout} = useAuth()
 const loading = ref(false)
-const showModal = ref(false)
+const showModal = computed({
+  get() {
+    return loginVisible()
+  },
+  set(newValue) {
+    showLogin(newValue)
+  },
+})
 const formLogin = ref({
   username: '',
   password: '',
