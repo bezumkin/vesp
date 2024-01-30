@@ -6,7 +6,7 @@ based on top of [Vue], [Eloquent], [Slim] and [Phinx].
 git clone https://github.com/bezumkin/vesp.git
 cd ./vesp
 cp .env.dist .env
-docker-compose up --build
+docker compose up
 ```
 
 This will run containers in production mode.
@@ -15,9 +15,9 @@ Open http://127.0.0.1:8080 and login with login and password `admin`.
 
 ## Development
 
-Copy `docker-compose.override.yml.dist` into `docker-compose.override.yml` and run `docker-compose up --build` again.
+Copy `docker-compose.override.yml.dist` into `docker-compose.override.yml` and run `docker compose up --build`.
 
-You will get frontend running in development mode with Hot Module Replacement and open local ports for containers.
+You will get frontend running in development mode with Hot Module Replacement and opened local ports for containers.
 
 To enable Xdebug, set variable `PHP_XDEBUG=1` in `.env` file and rebuild containers.
 
