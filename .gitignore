@@ -2,6 +2,7 @@
 /.env
 /.env.local
 /core/vendor
+/core/composer.lock
 /docker/.env
 /docker/log
 /docker/mariadb
@@ -12,6 +13,7 @@
 /frontend/.stylelintcache
 /frontend/.output
 /frontend/dist
-/frontend/src/site/static/sw.js
+/frontend/yarn.lock
+/frontend/package-lock.json
 /tmp
 /upload
