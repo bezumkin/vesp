@@ -1,20 +1,20 @@
 <template>
   <div>
-    <b-form-group :label="$t('models.user.username')">
-      <b-form-input v-model="record.username" required autofocus />
-    </b-form-group>
+    <BFormGroup :label="$t('models.user.username')">
+      <BFormInput v-model="record.username" required autofocus />
+    </BFormGroup>
 
-    <b-form-group :label="$t('models.user.fullname')">
-      <b-form-input v-model="record.fullname" />
-    </b-form-group>
+    <BFormGroup :label="$t('models.user.fullname')">
+      <BFormInput v-model="record.fullname" />
+    </BFormGroup>
 
-    <b-form-group :label="$t('models.user.password')">
-      <vesp-input-password v-model.trim="record.password" type="password" />
-    </b-form-group>
+    <BFormGroup :label="$t('models.user.password')">
+      <VespInputPassword v-model.trim="record.password" type="password" />
+    </BFormGroup>
 
-    <b-form-group :label="$t('models.user.email')">
-      <b-form-input v-model.trim="record.email" type="email" />
-    </b-form-group>
+    <BFormGroup :label="$t('models.user.email')">
+      <BFormInput v-model.trim="record.email" type="email" />
+    </BFormGroup>
   </div>
 </template>
 

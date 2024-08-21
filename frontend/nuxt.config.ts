@@ -2,8 +2,18 @@
 
 import type {NuxtConfig} from '@nuxt/schema'
 
+const enabledLocales = (process.env.LOCALES || 'ru,en,de,nl,fr').split(',')
+const locales = [
+  {code: 'ru', name: 'Русский', file: 'lexicons/ru.js', language: 'ru-RU'},
+  {code: 'en', name: 'English', file: 'lexicons/en.js', language: 'en-GB'},
+  {code: 'de', name: 'Deutsch', file: 'lexicons/de.js', language: 'de-DE'},
+  {code: 'nl', name: 'Nederlands', file: 'lexicons/nl.js', language: 'nl-NL'},
+  {code: 'fr', name: 'Français', file: 'lexicons/fr.js', language: 'fr-FR'},
+].filter((i) => enabledLocales.includes(i.code))
+
 const config: NuxtConfig = {
   telemetry: false,
+  ssr: true,
   srcDir: 'src/',
   css: ['~/assets/scss/index.scss'],
   devtools: {enabled: false},
@@ -13,7 +23,10 @@ const config: NuxtConfig = {
     },
     css: {
       preprocessorOptions: {
-        scss: {additionalData: '@use "@/assets/scss/_variables.scss" as *;'},
+        scss: {
+          additionalData: '@use "@/assets/scss/_variables.scss" as *;',
+          quietDeps: true,
+        },
       },
     },
   },
@@ -36,15 +49,13 @@ const config: NuxtConfig = {
     },
   },
   i18n: {
-    langDir: 'lexicons',
-    locales: [
-      {code: 'ru', name: 'Русский', file: 'ru.js', iso: 'ru-RU'},
-      {code: 'en', name: 'English', file: 'en.js', iso: 'en-GB'},
-      {code: 'de', name: 'Deutsch', file: 'de.js', iso: 'de-DE'},
-      {code: 'nl', name: 'Nederlands', file: 'nl.js', iso: 'nl-NL'},
-      {code: 'fr', name: 'Français', file: 'fr.js', iso: 'fr-FR'},
-    ],
+    locales,
+    defaultLocale: locales[0].code,
+    detectBrowserLanguage: {
+      fallbackLocale: locales[0].code,
+    },
   },
+  compatibilityDate: '2024-08-20',
 }
 
 if (process.env.NODE_ENV === 'development') {

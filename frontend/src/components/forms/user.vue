@@ -1,30 +1,30 @@
 <template>
   <div>
-    <b-form-group :label="$t('models.user.username')">
-      <b-form-input v-model.trim="record.username" required autofocus />
-    </b-form-group>
+    <BFormGroup :label="$t('models.user.username')">
+      <BFormInput v-model.trim="record.username" required autofocus />
+    </BFormGroup>
 
-    <b-form-group :label="$t('models.user.password')">
-      <vesp-input-password v-model.trim="record.password" :required="!record.id" />
-    </b-form-group>
+    <BFormGroup :label="$t('models.user.password')">
+      <VespInputPassword v-model.trim="record.password" :required="!record.id" />
+    </BFormGroup>
 
-    <b-form-group :label="$t('models.user.fullname')">
-      <b-form-input v-model="record.fullname" required />
-    </b-form-group>
+    <BFormGroup :label="$t('models.user.fullname')">
+      <BFormInput v-model="record.fullname" required />
+    </BFormGroup>
 
-    <b-form-group :label="$t('models.user.email')">
-      <b-form-input v-model="record.email" type="email" />
-    </b-form-group>
+    <BFormGroup :label="$t('models.user.email')">
+      <BFormInput v-model="record.email" type="email" />
+    </BFormGroup>
 
-    <b-form-group v-if="showGroup" :label="$t('models.user.role')">
-      <vesp-input-combo-box v-model="record.role_id" url="admin/user-roles" required />
-    </b-form-group>
+    <BFormGroup v-if="showGroup" :label="$t('models.user.role')">
+      <VespInputComboBox v-model="record.role_id" url="admin/user-roles" required />
+    </BFormGroup>
 
-    <b-form-group v-if="showStatus" class="col-md-auto">
-      <b-form-checkbox v-model="record.active">
+    <BFormGroup v-if="showStatus" class="col-md-auto">
+      <BFormCheckbox v-model="record.active">
         {{ $t('models.user.active') }}
-      </b-form-checkbox>
-    </b-form-group>
+      </BFormCheckbox>
+    </BFormGroup>
   </div>
 </template>
 
@@ -45,7 +45,9 @@ const props = defineProps({
     default: true,
   },
 })
+
 const emit = defineEmits(['update:modelValue'])
+
 const record = computed({
   get() {
     return props.modelValue

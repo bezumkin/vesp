@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-form-group :label="$t('models.user.username')">
-      <b-form-input v-model.trim="record.username" required autofocus />
-    </b-form-group>
+    <BFormGroup :label="$t('models.user.username')">
+      <BFormInput v-model.trim="record.username" required autofocus />
+    </BFormGroup>
 
-    <b-form-group :label="$t('models.user.password')">
-      <vesp-input-password v-model.trim="record.password" required />
-    </b-form-group>
+    <BFormGroup :label="$t('models.user.password')">
+      <VespInputPassword v-model.trim="record.password" required />
+    </BFormGroup>
   </div>
 </template>
 
@@ -17,7 +17,9 @@ const props = defineProps({
     required: true,
   },
 })
+
 const emit = defineEmits(['update:modelValue'])
+
 const record = computed({
   get() {
     return props.modelValue || {username: '', password: ''}

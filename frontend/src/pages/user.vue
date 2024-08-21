@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="user">
-      <nuxt-page />
+      <NuxtPage />
     </div>
   </div>
 </template>

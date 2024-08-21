@@ -1,16 +1,16 @@
 <template>
-  <vesp-table ref="table" v-bind="{url, fields, filters, headerActions, tableActions, rowClass, sort, dir}">
+  <VespTable ref="table" v-bind="{url, fields, filters, headerActions, tableActions, rowClass, sort, dir}">
     <template #cell(fullname)="{item}: any">
       <div class="d-flex align-items-center">
-        <vesp-fa icon="user" fixed-width />
+        <VespFa icon="user" fixed-width />
         <div class="ms-2">
           <div class="text-nowrap">{{ item.fullname }}</div>
           <div class="small text-muted">{{ item.username }}</div>
         </div>
       </div>
     </template>
-    <nuxt-page />
-  </vesp-table>
+    <NuxtPage />
+  </VespTable>
 </template>
 
 <script setup lang="ts">
@@ -28,11 +28,11 @@ const fields = computed(() => [
   {key: 'email', label: t('models.user.email'), sortable: true},
   {key: 'created_at', label: t('models.user.created_at'), sortable: true, formatter: formatDate},
 ])
-const headerActions: ComputedRef<VespTableAction[]> = computed(() => [
-  {route: {name: 'admin-users-create'}, icon: 'plus', title: t('actions.create')},
+const headerActions = computed<VespTableAction[]>(() => [
+  {route: {name: 'admin-users-id', params: {id: 0}}, icon: 'plus', title: t('actions.create')},
 ])
-const tableActions: ComputedRef<VespTableAction[]> = computed(() => [
-  {route: {name: 'admin-users-id-edit'}, icon: 'edit', title: t('actions.edit')},
+const tableActions = computed<VespTableAction[]>(() => [
+  {route: {name: 'admin-users-id'}, icon: 'edit', title: t('actions.edit')},
   {function: (i: any) => table.value.delete(i), icon: 'times', title: t('actions.delete'), variant: 'danger'},
 ])
 

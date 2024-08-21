@@ -1,56 +1,56 @@
 <template>
   <div>
-    <transition name="fade" mode="out-in">
+    <Transition name="fade" mode="out-in">
       <div v-if="loggedIn" key="user">
         <slot name="default" v-bind="{user, logout: onLogout}">
-          <b-dropdown v-if="user" :variant="btnVariant">
+          <BDropdown v-if="user" :variant="btnVariant">
             <template #button-content>
               <slot name="button" v-bind="{user}">
-                <vesp-fa icon="user" fixed-width />
+                <VespFa icon="user" fixed-width />
               </slot>
             </template>
             <slot name="user-menu" v-bind="{user}" />
-            <b-dropdown-divider />
-            <b-dropdown-item @click="onLogout">
-              <vesp-fa icon="power-off" fixed-width />
+            <BDropdownDivider />
+            <BDropdownItem @click="onLogout">
+              <VespFa icon="power-off" fixed-width />
               {{ $t('security.logout') }}
-            </b-dropdown-item>
-          </b-dropdown>
+            </BDropdownItem>
+          </BDropdown>
         </slot>
       </div>
       <div v-else key="guest">
         <slot name="guest">
-          <b-button @click="showModal = true">
+          <BButton @click="showModal = true">
             <span class="d-none d-md-inline">
               {{ $t('security.login') }}
             </span>
             <span class="d-md-none">
-              <vesp-fa icon="right-to-bracket" fixed-width />
+              <VespFa icon="right-to-bracket" fixed-width />
             </span>
-          </b-button>
+          </BButton>
         </slot>
       </div>
-    </transition>
+    </Transition>
 
-    <b-modal v-model="showModal" class="vesp-modal" :title="$t('security.login')" @shown="onShown">
-      <b-overlay :show="loading" :opacity="0.5">
-        <b-form @submit.prevent="onLogin">
-          <forms-login ref="form" v-model="formLogin" />
+    <BModal v-model="showModal" class="vesp-modal" :title="$t('security.login')" @shown="onShown">
+      <BOverlay :show="loading" :opacity="0.5">
+        <BForm @submit.prevent="onLogin">
+          <FormsLogin ref="form" v-model="formLogin" />
 
           <input ref="input" type="submit" class="d-none" />
-        </b-form>
-      </b-overlay>
+        </BForm>
+      </BOverlay>
 
       <template #footer="{hide}">
-        <b-button @click="() => hide()">{{ $t('actions.cancel') }}</b-button>
-        <b-button variant="primary" :disabled="loading" @click="formSubmit">{{ $t('actions.submit') }}</b-button>
+        <BButton @click="() => hide()">{{ $t('actions.cancel') }}</BButton>
+        <BButton variant="primary" :disabled="loading" @click="formSubmit">{{ $t('actions.submit') }}</BButton>
       </template>
-    </b-modal>
+    </BModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import type {BaseButtonVariant} from 'bootstrap-vue-next/src/types'
+import type {BaseButtonVariant} from 'bootstrap-vue-next'
 
 defineProps({
   btnVariant: {

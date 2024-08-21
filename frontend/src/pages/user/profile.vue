@@ -1,14 +1,14 @@
 <template>
-  <b-col xl="10" class="m-auto">
-    <b-overlay :show="loading" opacity="0.5">
-      <b-form @submit.prevent="onSubmit">
-        <forms-user v-model="form" :show-group="false" :show-status="false" />
+  <BCol xl="10" class="m-auto">
+    <BOverlay :show="loading" opacity="0.5">
+      <BForm @submit.prevent="onSubmit">
+        <FormsUser v-model="form" :show-group="false" :show-status="false" />
         <div class="text-center mt-3">
-          <b-button variant="primary" type="submit">{{ t('actions.save') }}</b-button>
+          <BButton variant="primary" type="submit">{{ t('actions.save') }}</BButton>
         </div>
-      </b-form>
-    </b-overlay>
-  </b-col>
+      </BForm>
+    </BOverlay>
+  </BCol>
 </template>
 
 <script setup lang="ts">
@@ -17,7 +17,7 @@ import type {VespUser} from '@vesp/frontend'
 const {t} = useI18n()
 const {loadUser, user} = useAuth()
 const loading = ref(false)
-const form: Ref<VespUser> = ref({id: 0, username: '', ...user.value})
+const form = ref<VespUser>({id: 0, username: '', ...user.value})
 
 async function onSubmit() {
   try {

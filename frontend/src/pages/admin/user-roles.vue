@@ -1,7 +1,7 @@
 <template>
-  <vesp-table ref="table" v-bind="{url, fields, filters, headerActions, tableActions, sort, dir}">
-    <nuxt-page />
-  </vesp-table>
+  <VespTable ref="table" v-bind="{url, fields, filters, headerActions, tableActions, sort, dir}">
+    <NuxtPage />
+  </VespTable>
 </template>
 
 <script setup lang="ts">
@@ -19,11 +19,11 @@ const fields = computed(() => [
   {key: 'scope', label: t('models.user_role.scope'), formatter: formatTags},
   {key: 'users_count', label: t('models.user_role.users'), sortable: true},
 ])
-const headerActions: ComputedRef<VespTableAction[]> = computed(() => [
-  {route: {name: 'admin-user-roles-create'}, icon: 'plus', title: t('actions.create')},
+const headerActions = computed<VespTableAction[]>(() => [
+  {route: {name: 'admin-user-roles-id', params: {id: 0}}, icon: 'plus', title: t('actions.create')},
 ])
-const tableActions: ComputedRef<VespTableAction[]> = computed(() => [
-  {route: {name: 'admin-user-roles-id-edit'}, icon: 'edit', title: t('actions.edit')},
+const tableActions = computed<VespTableAction[]>(() => [
+  {route: {name: 'admin-user-roles-id'}, icon: 'edit', title: t('actions.edit')},
   {function: (i: any) => table.value.delete(i), icon: 'times', title: t('actions.delete'), variant: 'danger'},
 ])
 

@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
 
   nginx:
-    image: nginx:${NGINX_VERSION:-1.25}
+    image: nginx:${NGINX_VERSION:-1.26}
     environment:
       - NGINX_PORT=${NGINX_PORT:-8080}
       - NODE_PORT=${NODE_PORT:-3000}
@@ -55,7 +55,7 @@ services:
     command: sh -c 'composer install --no-dev && composer db:migrate && cron && php-fpm'
 
   node:
-    image: node:${NODE_VERSION:-21}
+    image: node:${NODE_VERSION:-22}
     volumes:
       - ./.env:/vesp/.env
       - ./frontend:/vesp/frontend
