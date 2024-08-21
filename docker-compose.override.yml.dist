@@ -9,8 +9,6 @@ services:
     restart: no
     volumes:
       - ./docker/nginx/development:/etc/nginx/templates
-    ports:
-      - ${NODE_PORT_WS:-3001}:3001
 
   php-fpm:
     restart: no
