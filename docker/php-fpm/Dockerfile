@@ -27,7 +27,7 @@ RUN echo "* * * * * www-data /usr/local/bin/php /vesp/core/cli/cron.php" >> /etc
 
 ARG PHP_XDEBUG
 RUN if [ "$PHP_XDEBUG" = "1" ]; then \
-      yes | pecl install xdebug-3.3.0 \
+      yes | pecl install xdebug \
           && echo "zend_extension=xdebug" > /usr/local/etc/php/conf.d/xdebug.ini \
           && echo "xdebug.mode=develop,debug" >> /usr/local/etc/php/conf.d/xdebug.ini \
           && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/xdebug.ini \

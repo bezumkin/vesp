@@ -33,7 +33,7 @@ services:
     build:
       context: ./docker/php-fpm
       args:
-        - PHP_VERSION=${PHP_VERSION:-8.3}
+        - PHP_VERSION=${PHP_VERSION:-8.4}
         - PHP_XDEBUG=${PHP_XDEBUG:-0}
         - TZ=${TZ:-Europe/Moscow}
     volumes:
@@ -62,6 +62,7 @@ services:
     depends_on:
       - nginx
     environment:
+      - NODE_OPTIONS=--max_old_space_size=4096
       - TZ=${TZ:-Europe/Moscow}
     network_mode: 'service:nginx'
     restart: unless-stopped
