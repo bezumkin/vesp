@@ -20,15 +20,10 @@ const {t} = useI18n()
 const sections = computed(() => getAdminSections())
 
 function checkAccess() {
-  if (!user.value) {
-    showError({statusCode: 401, statusMessage: 'Unauthorized'})
-    nextTick(() => {
-      showLogin(true)
-    })
-  } else if (!sections.value.length) {
+  if (!sections.value.length) {
     showError({statusCode: 403, statusMessage: 'Access Denied'})
   } else if (route.name === 'admin') {
-    navigateTo({name: sections.value[0].route}, {replace: true})
+    navigateTo({name: sections.value[0]?.route}, {replace: true})
   } else {
     const section = sections.value.find((i) => i.route === route.name)
     if (section && section.scope && !hasScope(section.scope)) {

@@ -4,20 +4,34 @@ import type {NuxtConfig} from '@nuxt/schema'
 
 const enabledLocales = (process.env.LOCALES || 'ru,en,de,nl,fr').split(',')
 const locales = [
-  {code: 'ru', name: 'Русский', file: 'lexicons/ru.js', language: 'ru-RU'},
-  {code: 'en', name: 'English', file: 'lexicons/en.js', language: 'en-GB'},
-  {code: 'de', name: 'Deutsch', file: 'lexicons/de.js', language: 'de-DE'},
-  {code: 'nl', name: 'Nederlands', file: 'lexicons/nl.js', language: 'nl-NL'},
-  {code: 'fr', name: 'Français', file: 'lexicons/fr.js', language: 'fr-FR'},
+  {code: 'ru', name: 'Русский', file: 'ru.js', language: 'ru-RU'},
+  {code: 'en', name: 'English', file: 'en.js', language: 'en-GB'},
+  {code: 'de', name: 'Deutsch', file: 'de.js', language: 'de-DE'},
+  {code: 'nl', name: 'Nederlands', file: 'nl.js', language: 'nl-NL'},
+  {code: 'fr', name: 'Français', file: 'fr.js', language: 'fr-FR'},
 ].filter((i) => enabledLocales.includes(i.code))
 
 const config: NuxtConfig = {
   telemetry: false,
   ssr: true,
-  srcDir: 'src/',
+  future: {
+    compatibilityVersion: 4,
+  },
+  experimental: {
+    appManifest: false,
+    normalizeComponentNames: false,
+  },
+  nitro: {
+    // experimental: {websocket: true},
+    // storage: {cache: {driver: 'redis', host: 'redis'}},
+    // devStorage: {cache: {driver: 'redis', host: 'redis'}},
+  },
   css: ['~/assets/scss/index.scss'],
   devtools: {enabled: false},
   vite: {
+    server: {
+      // allowedHosts: ['vesp.test'],
+    },
     css: {
       preprocessorOptions: {
         scss: {
@@ -40,6 +54,8 @@ const config: NuxtConfig = {
     },
   },
   app: {
+    pageTransition: {name: 'page', mode: 'out-in'},
+    layoutTransition: {name: 'page', mode: 'out-in'},
     head: {
       title: process.env.SITE_NAME,
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0',
@@ -56,17 +72,18 @@ const config: NuxtConfig = {
   modules: ['@vesp/frontend'],
   vesp: {
     icons: {
-      solid: ['faUser', 'faPowerOff', 'faRightToBracket'],
+      solid: ['user', 'power-off', 'right-to-bracket'],
     },
   },
   i18n: {
     locales,
-    defaultLocale: locales[0].code,
+    defaultLocale: locales[0]?.code || 'en',
     detectBrowserLanguage: {
-      fallbackLocale: locales[0].code,
+      fallbackLocale: locales[0]?.code || 'en',
     },
+    langDir: 'lexicons',
   },
-  compatibilityDate: '2024-08-20',
+  compatibilityDate: '2025-04-09',
 }
 
 if (process.env.NODE_ENV === 'development') {
