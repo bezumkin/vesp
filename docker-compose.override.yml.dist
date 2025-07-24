@@ -7,6 +7,8 @@ services:
   nginx:
     volumes:
       - ./docker/nginx/development:/etc/nginx/templates
+    extra_hosts:
+      - "vesp.test=host-gateway"
 
   php-fpm:
     environment:
@@ -14,5 +16,6 @@ services:
     command: sh -c 'composer install && composer db:migrate && php-fpm'
 
   node:
-    # command: sh -c 'rm -rf /tmp/* && npm i && npm run analyze'
+    environment:
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
     command: sh -c 'rm -rf /tmp/* && npm i && npm run dev'

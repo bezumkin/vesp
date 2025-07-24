@@ -1,26 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 import type {NuxtConfig} from '@nuxt/schema'
+import type {LocaleObject} from '@nuxtjs/i18n'
 
 const enabledLocales = (process.env.LOCALES || 'ru,en,de,nl,fr').split(',')
-const locales = [
+const allLocales: LocaleObject[] = [
   {code: 'ru', name: 'Русский', file: 'ru.js', language: 'ru-RU'},
   {code: 'en', name: 'English', file: 'en.js', language: 'en-GB'},
   {code: 'de', name: 'Deutsch', file: 'de.js', language: 'de-DE'},
   {code: 'nl', name: 'Nederlands', file: 'nl.js', language: 'nl-NL'},
   {code: 'fr', name: 'Français', file: 'fr.js', language: 'fr-FR'},
-].filter((i) => enabledLocales.includes(i.code))
+]
+const locales = allLocales.filter((i) => enabledLocales.includes(i.code))
 
 const config: NuxtConfig = {
   telemetry: false,
   ssr: true,
-  future: {
-    compatibilityVersion: 4,
-  },
-  experimental: {
-    appManifest: false,
-    normalizeComponentNames: false,
-  },
   nitro: {
     // experimental: {websocket: true},
     // storage: {cache: {driver: 'redis', host: 'redis'}},
@@ -83,7 +78,7 @@ const config: NuxtConfig = {
     },
     langDir: 'lexicons',
   },
-  compatibilityDate: '2025-04-09',
+  compatibilityDate: '2025-07-24',
 }
 
 if (process.env.NODE_ENV === 'development') {
@@ -98,4 +93,5 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
+// @ts-ignore
 export default defineNuxtConfig(config)
