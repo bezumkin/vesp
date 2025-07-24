@@ -82,10 +82,20 @@ const config: NuxtConfig = {
 }
 
 if (process.env.NODE_ENV === 'development') {
-  config.modules?.push('@nuxtjs/eslint-module', '@nuxtjs/stylelint-module')
+  config.modules?.push('@nuxt/eslint', '@nuxtjs/stylelint-module')
   // @ts-ignore
   config.eslint = {
-    lintOnStart: false,
+    checker: true,
+    config: {
+      stylistic: {
+        semi: false,
+        arrowParens: true,
+        quotes: 'single',
+        commaDangle: 'always-multiline',
+        braceStyle: '1tbs',
+        blockSpacing: false,
+      },
+    },
   }
   // @ts-ignore
   config.stylelint = {

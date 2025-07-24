@@ -37,13 +37,17 @@
         <BForm @submit.prevent="onLogin">
           <FormsLogin ref="form" v-model="formLogin" />
 
-          <input ref="input" type="submit" class="d-none" />
+          <input ref="input" type="submit" class="d-none">
         </BForm>
       </BOverlay>
 
       <template #footer="{hide}">
-        <BButton @click="() => hide()">{{ $t('actions.cancel') }}</BButton>
-        <BButton variant="primary" :disabled="loading" @click="formSubmit">{{ $t('actions.submit') }}</BButton>
+        <BButton @click="() => hide()">
+          {{ $t('actions.cancel') }}
+        </BButton>
+        <BButton variant="primary" :disabled="loading" @click="formSubmit">
+          {{ $t('actions.submit') }}
+        </BButton>
       </template>
     </BModal>
   </div>

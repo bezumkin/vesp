@@ -24,10 +24,10 @@ const headerActions = computed<VespTableAction[]>(() => [
 ])
 const tableActions = computed<VespTableAction[]>(() => [
   {route: {name: 'admin-user-roles-id'}, icon: 'edit', title: t('actions.edit')},
-  {function: (i: any) => table.value.delete(i), icon: 'times', title: t('actions.delete'), variant: 'danger'},
+  {function: (i) => table.value.delete(i), icon: 'times', title: t('actions.delete'), variant: 'danger'},
 ])
 
-function formatTags(value?: any) {
+function formatTags(value?) {
   return value ? value.join(', ') : ''
 }
 </script>

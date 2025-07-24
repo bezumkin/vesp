@@ -28,7 +28,7 @@ const record = ref({
 if (id) {
   try {
     record.value = await useGet(params.value.url)
-  } catch (e: any) {
+  } catch (e) {
     showError({statusCode: e.statusCode, statusMessage: e.message})
   }
 }

@@ -1,11 +1,15 @@
 <template>
   <VespTable ref="table" v-bind="{url, fields, filters, headerActions, tableActions, rowClass, sort, dir}">
-    <template #cell(fullname)="{item}: any">
+    <template #cell(fullname)="{item}">
       <div class="d-flex align-items-center">
         <VespFa icon="user" fixed-width />
         <div class="ms-2">
-          <div class="text-nowrap">{{ item.fullname }}</div>
-          <div class="small text-muted">{{ item.username }}</div>
+          <div class="text-nowrap">
+            {{ item.fullname }}
+          </div>
+          <div class="small text-muted">
+            {{ item.username }}
+          </div>
         </div>
       </div>
     </template>
@@ -33,14 +37,14 @@ const headerActions = computed<VespTableAction[]>(() => [
 ])
 const tableActions = computed<VespTableAction[]>(() => [
   {route: {name: 'admin-users-id'}, icon: 'edit', title: t('actions.edit')},
-  {function: (i: any) => table.value.delete(i), icon: 'times', title: t('actions.delete'), variant: 'danger'},
+  {function: (i) => table.value.delete(i), icon: 'times', title: t('actions.delete'), variant: 'danger'},
 ])
 
-function formatDate(value: any) {
+function formatDate(value) {
   return value ? d(value, 'long') : ''
 }
 
-function rowClass(item: any) {
+function rowClass(item) {
   if (item) {
     const cls = []
     if (!item.active) {

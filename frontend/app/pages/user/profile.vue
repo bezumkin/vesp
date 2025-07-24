@@ -4,7 +4,9 @@
       <BForm @submit.prevent="onSubmit">
         <FormsUser v-model="form" :show-group="false" :show-status="false" />
         <div class="text-center mt-3">
-          <BButton variant="primary" type="submit">{{ t('actions.save') }}</BButton>
+          <BButton variant="primary" type="submit">
+            {{ t('actions.save') }}
+          </BButton>
         </div>
       </BForm>
     </BOverlay>

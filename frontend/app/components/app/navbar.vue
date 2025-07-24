@@ -11,7 +11,9 @@
             <BDropdownItem v-if="isAdmin" :to="{name: 'admin'}" link-class="border-bottom">
               {{ $t('pages.admin.title') }}
             </BDropdownItem>
-            <BDropdownItem :to="{name: 'user-profile'}">{{ $t('pages.user.profile') }}</BDropdownItem>
+            <BDropdownItem :to="{name: 'user-profile'}">
+              {{ $t('pages.user.profile') }}
+            </BDropdownItem>
           </template>
         </AppLogin>
       </BNavbarNav>
