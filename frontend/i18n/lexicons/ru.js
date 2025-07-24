@@ -26,6 +26,7 @@ export default {
       active: 'Активно',
       role: 'Группа',
       created_at: 'Дата создания',
+      active_at: 'Активность',
     },
     user_role: {
       title_one: 'Группа',

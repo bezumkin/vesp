@@ -5,7 +5,7 @@ export default {
     message: 'Sélectionnez un élément de menu pour commencer',
   },
   security: {
-    username: "Nom d'utilisateur",
+    username: 'Nom d\'utilisateur',
     password: 'Mot de passe',
     login: 'Connexion',
     logout: 'Se déconnecter',
@@ -19,15 +19,16 @@ export default {
       title_one: 'Utilisateur',
       title_many: 'Utilisateurs',
       id: 'Id',
-      username: "Nom d'utilisateur",
+      username: 'Nom d\'utilisateur',
       fullname: 'Nom et prénom',
       password: 'Mot de passe',
       email: 'E-mail',
       active: 'Actif',
       created_at: 'Date de création',
+      active_at: 'War aktiv',
     },
     user_role: {
-      title_one: "Rôle d'utilisateur",
+      title_one: 'Rôle d\'utilisateur',
       title_many: 'Rôles des utilisateurs',
       id: 'Id',
       title: 'Titre',
@@ -54,8 +55,8 @@ export default {
   },
   errors: {
     security: {
-      inactive: "Votre compte n'est pas actif",
-      wrong: "Nom d'utilisateur ou mot de passe erroné",
+      inactive: 'Votre compte n\'est pas actif',
+      wrong: 'Nom d\'utilisateur ou mot de passe erroné',
     },
   },
 }

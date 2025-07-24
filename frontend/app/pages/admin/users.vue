@@ -1,5 +1,8 @@
 <template>
   <VespTable ref="table" v-bind="{url, fields, filters, headerActions, tableActions, rowClass, sort, dir}">
+    <template #header-middle>
+      <VespInputComboBox v-model="filters.role" url="admin/user-roles" :placeholder="t('models.user_role.title_one')" />
+    </template>
     <template #cell(fullname)="{item}">
       <div class="d-flex align-items-center">
         <VespFa icon="user" fixed-width />
@@ -23,13 +26,15 @@ import type {VespTableAction} from '@vesp/frontend'
 const {t, d} = useI18n()
 const table = ref()
 const url = 'admin/users'
-const filters = ref({query: ''})
+const filters = ref({query: '', role: 0})
 const sort = 'id'
 const dir = 'desc'
 const fields = computed(() => [
   {key: 'id', label: t('models.user.id'), sortable: true},
   {key: 'fullname', label: t('models.user.fullname')},
   {key: 'email', label: t('models.user.email'), sortable: true},
+  {key: 'role.title', label: t('models.user_role.title_one')},
+  {key: 'active_at', label: t('models.user.active_at'), sortable: true, formatter: formatDate},
   {key: 'created_at', label: t('models.user.created_at'), sortable: true, formatter: formatDate},
 ])
 const headerActions = computed<VespTableAction[]>(() => [
@@ -40,11 +45,11 @@ const tableActions = computed<VespTableAction[]>(() => [
   {function: (i) => table.value.delete(i), icon: 'times', title: t('actions.delete'), variant: 'danger'},
 ])
 
-function formatDate(value) {
+function formatDate(value: string) {
   return value ? d(value, 'long') : ''
 }
 
-function rowClass(item) {
+function rowClass(item: Record<string, boolean>) {
   if (item) {
     const cls = []
     if (!item.active) {

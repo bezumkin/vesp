@@ -22,7 +22,9 @@ class UserRoles extends ModelController
 
     protected function afterCount(Builder $c): Builder
     {
-        $c->withCount('users');
+        if (!$this->getProperty('combo')) {
+            $c->withCount('users');
+        }
 
         return $c;
     }

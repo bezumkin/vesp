@@ -13,7 +13,7 @@
             <BDropdownDivider />
             <BDropdownItem @click="onLogout">
               <VespFa icon="power-off" fixed-width />
-              {{ $t('security.logout') }}
+              {{ t('security.logout') }}
             </BDropdownItem>
           </BDropdown>
         </slot>
@@ -22,7 +22,7 @@
         <slot name="guest">
           <BButton @click="showModal = true">
             <span class="d-none d-md-inline">
-              {{ $t('security.login') }}
+              {{ t('security.login') }}
             </span>
             <span class="d-md-none">
               <VespFa icon="right-to-bracket" fixed-width />
@@ -32,7 +32,7 @@
       </div>
     </Transition>
 
-    <BModal v-model="showModal" class="vesp-modal" :title="$t('security.login')" @shown="onShown">
+    <BModal v-model="showModal" class="vesp-modal" :title="t('security.login')" @shown="onShown">
       <BOverlay :show="loading" :opacity="0.5">
         <BForm @submit.prevent="onLogin">
           <FormsLogin ref="form" v-model="formLogin" />
@@ -43,10 +43,10 @@
 
       <template #footer="{hide}">
         <BButton @click="() => hide()">
-          {{ $t('actions.cancel') }}
+          {{ t('actions.cancel') }}
         </BButton>
         <BButton variant="primary" :disabled="loading" @click="formSubmit">
-          {{ $t('actions.submit') }}
+          {{ t('actions.submit') }}
         </BButton>
       </template>
     </BModal>

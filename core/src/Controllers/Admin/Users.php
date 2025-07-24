@@ -22,6 +22,10 @@ class Users extends ModelController
             );
         }
 
+        if ($role = $this->getProperty('role')) {
+            $c->where('role_id', $role);
+        }
+
         return $c;
     }
 

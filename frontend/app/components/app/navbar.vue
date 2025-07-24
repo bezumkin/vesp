@@ -9,10 +9,10 @@
         <AppLogin :btn-variant="btnVariant">
           <template #user-menu>
             <BDropdownItem v-if="isAdmin" :to="{name: 'admin'}" link-class="border-bottom">
-              {{ $t('pages.admin.title') }}
+              {{ t('pages.admin.title') }}
             </BDropdownItem>
             <BDropdownItem :to="{name: 'user-profile'}">
-              {{ $t('pages.user.profile') }}
+              {{ t('pages.user.profile') }}
             </BDropdownItem>
           </template>
         </AppLogin>
@@ -32,5 +32,6 @@ defineProps({
   },
 })
 
+const {t} = useI18n()
 const isAdmin = computed(() => hasScope('users'))
 </script>

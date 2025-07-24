@@ -27,7 +27,7 @@ const tableActions = computed<VespTableAction[]>(() => [
   {function: (i) => table.value.delete(i), icon: 'times', title: t('actions.delete'), variant: 'danger'},
 ])
 
-function formatTags(value?) {
+function formatTags(value: string[]) {
   return value ? value.join(', ') : ''
 }
 </script>

@@ -1,61 +1,71 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Schema\Blueprint;
 use Vesp\Services\Migration;
 
 require_once __DIR__ . '/../seeds/SeedUserRoles.php';
 require_once __DIR__ . '/../seeds/SeedUsers.php';
 
-class Users extends Migration
+final class Users extends Migration
 {
-
     public function up(): void
     {
         $this->schema->create(
             'user_roles',
-            function (Blueprint $table) {
+            static function (Blueprint $table) {
                 $table->id();
-                $table->string('title')->unique();
+                $table->string('title');
                 $table->json('scope')->nullable();
                 $table->timestamps();
+
+                $table->unique('title');
             }
         );
 
         $this->schema->create(
             'users',
-            function (Blueprint $table) {
+            static function (Blueprint $table) {
                 $table->id();
-                $table->string('username')->unique();
+                $table->foreignId('role_id')
+                    ->constrained('user_roles')->cascadeOnDelete();
+                $table->string('username');
                 $table->string('password');
                 $table->string('fullname')->nullable();
                 $table->string('email')->nullable();
-                $table->foreignId('role_id')
-                    ->constrained('user_roles')->cascadeOnDelete();
-                $table->boolean('active')->default(true)->index();
+                $table->boolean('active')->default(true);
+                $table->boolean('blocked')->default(false);
                 $table->timestamps();
+                $table->timestamp('active_at')->nullable();
+
+                $table->unique('username');
+                $table->index('active');
             }
         );
 
         $this->schema->create(
             'user_tokens',
-            function (Blueprint $table) {
-                $table->string('token')->primary();
+            static function (Blueprint $table) {
+                $table->string('token');
                 $table->foreignId('user_id')
                     ->constrained('users')->cascadeOnDelete();
-                $table->timestamp('valid_till')->index();
+                $table->timestamp('valid_till');
                 $table->string('ip', 16)->nullable();
                 $table->boolean('active')->default(true);
                 $table->timestamps();
 
-                $table->index(['token', 'user_id', 'active']);
+                $table->primary('token');
+                $table->index('valid_till');
+                $table->index(['token', 'active']);
             }
         );
 
         if ($adapter = $this->getAdapter()) {
             $input = $this->getInput();
             $output = $this->getOutput();
-            (new SeedUserRoles())->setAdapter($adapter)->setInput($input)->setOutput($output)->run();
-            (new SeedUsers())->setAdapter($adapter)->setInput($input)->setOutput($output)->run();
+            new SeedUserRoles()->setAdapter($adapter)->setInput($input)->setOutput($output)->run();
+            new SeedUsers()->setAdapter($adapter)->setInput($input)->setOutput($output)->run();
         }
     }
 

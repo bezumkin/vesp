@@ -26,6 +26,7 @@ export default {
       active: 'Actief',
       role: 'Rol',
       created_at: 'Aanmaakdatum',
+      active_at: 'Was actief',
     },
     user_role: {
       title_one: 'Gebruikersrol',

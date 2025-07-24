@@ -26,6 +26,7 @@ export default {
       active: 'Aktiv',
       role: 'Rolle',
       created_at: 'Erstellungsdatum',
+      active_at: 'Active At',
     },
     user_role: {
       title_one: 'Benutzer-Rolle',
