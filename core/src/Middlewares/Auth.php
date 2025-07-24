@@ -28,6 +28,7 @@ class Auth extends \Vesp\Middlewares\Auth
                         $user->active_at = $now;
                         $user->timestamps = false;
                         $user->save();
+                        $user->timestamps = true;
 
                         $request = $request->withAttribute('user', $user);
                         $request = $request->withAttribute('token', $token->token);
