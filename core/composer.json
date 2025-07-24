@@ -2,6 +2,7 @@
   "name": "vesp/vesp",
   "license": "MIT",
   "description": "Vesp Framework",
+  "version": "1.0.0",
   "authors": [
     {
       "name": "Vasily Naumkin",
@@ -17,6 +18,7 @@
     "ext-json": "*",
     "akrabat/ip-address-middleware": "^2.1",
     "peppeocchi/php-cron-scheduler": "^4.0",
+    "ramsey/uuid": "^4.9",
     "vesp/core": "^4.1"
   },
   "require-dev": {
