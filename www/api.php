@@ -16,6 +16,6 @@ require BASE_DIR . 'core/routes.php';
 try {
     $app->run();
 } catch (Throwable $e) {
-    http_response_code($e->getCode());
+    http_response_code((int)$e->getCode());
     echo json_encode($e->getMessage());
 }
