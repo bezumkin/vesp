@@ -1,5 +1,6 @@
 /.idea
 /core/vendor
+/core/composer.lock
 /docker/.env
 /docker/mariadb
 /frontend/node_modules
@@ -8,6 +9,7 @@
 /frontend/.stylelintcache
 /frontend/.output
 /frontend/dist
+/frontend/package-lock.json
 /tmp
 /upload
 /.env
