@@ -14,7 +14,7 @@
     "stylelint:fix": "stylelint --fix --quiet ./app/assets/**/*.scss"
   },
   "dependencies": {
-    "@vesp/frontend": "^5.0.0-rc.1",
+    "@vesp/frontend": "^5.0.0",
     "nuxt": "^4.0.1"
   },
   "devDependencies": {
